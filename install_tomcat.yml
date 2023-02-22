@@ -2,6 +2,9 @@
 
 - name: Install httpd
   hosts: webservers
+  become: true
+  vars:
+    ansible_become_pass: "jenkinsadmin"
 
   roles:
     - tomcat
