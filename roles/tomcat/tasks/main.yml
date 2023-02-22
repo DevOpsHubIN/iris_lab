@@ -1,0 +1,24 @@
+---
+# tasks file for tomcat
+#
+
+- name: install tomcat
+  yum:
+    name: "{{ item }}"
+    state: installed
+  loop:
+    - tomcat
+    - tomcat-webapps
+    - tomcat-admin-webapps
+    - tomcat-docs-webapp
+
+- name: copy tomcat-users.xml
+  copy:
+    src: tomcat-users.xml
+    dest: /usr/share/tomcat/conf/tomcat-users.xml
+
+- name: start tomcat
+  service:
+    name: tomcat
+    state: started
+    enabled: yes

@@ -1,0 +1,5 @@
+---
+# defaults file for apache
+
+apache_user: apache
+apache_group: apache

@@ -1,0 +1,23 @@
+---
+
+- name: Uninstall httpd
+  hosts: webservers
+
+  tasks:
+
+  - name: stop httpd service
+    service:
+      name: httpd
+      state: stopped
+
+  - name: remove index.html
+    file:
+      path: /var/www/html/index.html
+      state: absent
+
+  - name: uninstall httpd
+    yum:
+      name: httpd
+      state: absent
+
+...

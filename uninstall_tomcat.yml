@@ -1,0 +1,23 @@
+---
+
+- name: Uninstall httpd
+  hosts: webservers
+
+  tasks:
+
+  - name: stop tomcat service
+    service:
+      name: tomcat
+      state: stopped
+
+  - name: install tomcat
+    yum:
+      name: "{{ item }}"
+      state: absent
+    loop:
+      - tomcat
+      - tomcat-webapps
+      - tomcat-admin-webapps
+      - tomcat-docs-webapp
+
+...

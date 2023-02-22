@@ -1,0 +1,26 @@
+---
+# tasks file for apache
+
+- name: install httpd
+  yum:
+    name: httpd
+    state: present
+
+- name: create index.html
+  copy:
+    src: index.html
+    dest: /var/www/html/index.html
+
+- name: start httpd service
+  service:
+    name: httpd
+    state: started
+
+- name: reconfigure apache port to 8080
+  template:
+    src: httpd.conf.j2
+    dest: /etc/httpd/conf/httpd.conf
+  notify:
+    - restart apache
+
+...

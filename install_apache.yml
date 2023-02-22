@@ -1,0 +1,9 @@
+---
+
+- name: Install httpd
+  hosts: webservers
+
+  roles:
+    - apache
+
+...

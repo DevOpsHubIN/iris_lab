@@ -1,0 +1,14 @@
+---
+# tasks file for apache
+
+- name: install httpd
+  apt:
+    name: apache2
+    state: present
+
+
+- name: start httpd service
+  service:
+    name: apache2
+    state: started
+...
