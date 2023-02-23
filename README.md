@@ -228,3 +228,100 @@ On Jenkins Dashboard
 
 https://github.com/DevOpsHubIN/iris_lab.git
 
+# Docker Lab Day 1 #
+
+Install Docker
+
+  221  yum update
+  222  yum install docker
+  223  systemctl status docker
+  224  systemctl start docker
+  225  systemctl status docker
+  226  docker images
+
+List images and Run hello-world, ubuntu container
+
+  228  docker images
+  229  docker run hello-world
+  230  docker images
+  231  docker ps
+  232  docker run hello-world
+  233  docker ps
+  234  docker ps -a
+  235  docker run ubuntu
+  236  docker ps
+  237  docker images
+  238  docker ps -a
+
+Create and connect to a container
+
+  241  cat /etc/os-release
+  242  uname -r
+  243  docker run -ti ubuntu /bin/bash
+		  cat /etc/os-release
+  		  uname -r
+		  exit
+  244  docker ps
+  245  docker ps -a
+  246  docker run -tid ubuntu /bin/sh
+		  exit
+  247  docker ps
+  248  docker ps -a
+
+Creating a image from a running container
+
+  255  docker run -ti ubuntu bash
+			apt update
+			apt upgrade -y
+			echo "This image is updated on `date`" > update_time
+			exit
+
+  256  docker ps -a | grep <your container ID>
+  257  docker commit <your container ID> ubuntu_iris:updated
+  258  docker images
+  259  docker run -ti ubuntu_iris:updated bash
+		exit
+  260  docker ps
+  261  docker ps -a | grep <your container ID>
+
+
+creating a name for a container
+
+docker run --name iris_ubuntu_v3 -tid ubuntu_iris:updated bash
+
+Managing container state
+
+  285  docker ps -a
+  286  docker start iris_ubuntu_v2
+  287  docker ps
+  288  docker pause iris_ubuntu_v3
+  289  docker ps
+  290  docker start iris_ubuntu_v3
+  291  docker unpause iris_ubuntu_v3
+  292  docker kill sleepy_haslett
+  293  docker ps
+  294  docker ps -a
+  295  docker rm 2d8351f8de95
+  296  docker container prune
+  297  docker ps
+
+Looking at the logs
+
+302  docker run --name devops -d ubuntu bash -c "lose /etc/password"
+  303  docker log devops
+  304  docker logs devops
+
+
+Limiting resources on docker container
+
+307  docker stop devops
+  308  docker rm devops
+  309  docker run --name devops -m 512m -d ubuntu bash
+  310  docker describe devops
+  311  docker inspect devops
+  312  docker stop devops
+  313  docker rm devops
+  314  docker run --name devops -m 512m --cpus=1 -d ubuntu bash
+
+
+
