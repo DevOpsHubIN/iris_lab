@@ -307,14 +307,14 @@ Managing container state
 
 Looking at the logs
 
-302  docker run --name devops -d ubuntu bash -c "lose /etc/password"
+  302  docker run --name devops -d ubuntu bash -c "lose /etc/password"
   303  docker log devops
   304  docker logs devops
 
 
 Limiting resources on docker container
 
-307  docker stop devops
+  307  docker stop devops
   308  docker rm devops
   309  docker run --name devops -m 512m -d ubuntu bash
   310  docker describe devops
