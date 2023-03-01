@@ -1,5 +1,6 @@
 # Initialize the  
 # Ensure Vagrant and Virtual Box is installed
+#Below steps are tested for Ubuntu 20.04 and Kubernetes 1.24
 
 vagrant status
 vagrant up k8s-cp k8s-w1
